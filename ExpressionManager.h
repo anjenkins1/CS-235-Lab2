@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <vector>
 #include <stack>
 #include "ExpressionManagerInterface.h"
 
@@ -61,4 +63,44 @@ public:
 	*/
 	string infixToPostfix(string infixExpression);
 
+private:
+	/*
+	* Checks a given character if it is the left side of a parenthesis, bracket, or brace
+	* 
+	* returns true if t is one of the following - "(" "{" "["
+	*/
+	bool isLeftParen(char c);
+	bool isLeftParen(string c);
+
+	/*
+	* Checks a given character if it is the right side of a parenthesis, bracket, or brace
+	*
+	* returns true if t is one of the following - ")" "}" "]"
+	*/
+	bool isRightParen(char c);
+	bool isRightParen(string c);
+	/*
+	* Checks two strings if they are a pair of parenthesis, brackets, or braces
+	*
+	* 
+	*/
+	bool isPair(char left, char right);
+
+	bool isPair(string left, string right);
+
+	bool isOperator(string check);
+
+	bool isNumber(const string& test);
+
+	bool isValidChar(string check);
+
+	bool processOperator(stack<string>& opStack, string& postfix, string& op);
+
+	int precedence(string check);
+
+	vector<string> parseTokens(string expression);
+
+	int solveExpression(int left, int right, string op);
+
+	void trim(string& s);
 };
